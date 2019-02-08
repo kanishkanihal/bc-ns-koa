@@ -19,11 +19,9 @@ router.get('bc-index', '/', (ctx) => {
 });
 
 router.get('bc-auth', '/auth', (ctx) => {
-    bigCommerce.authorize(ctx.request.query)
-    .then(data => {
-            ctx.render('bigcommerce/auth', { title: 'Authorized!', data: data });
-        }
-    );
+    const data = bigCommerce.authorize(ctx.request.query)
+        .then(data => {return data;});
+    ctx.render('bigcommerce/auth', { title: 'Authorized!', data: data });
 });
 
 router.get('bc-load', '/load', (ctx) => {
