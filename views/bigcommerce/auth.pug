@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+    h1= title
+    ul
+        li= 'Access token' + ': ' + data.access_token
+        li= 'Scope' + ': ' + data.scope
+        li= 'Context' + ': ' + data.context
