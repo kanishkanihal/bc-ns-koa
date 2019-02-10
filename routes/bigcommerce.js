@@ -14,18 +14,24 @@ const bigCommerce = new BigCommerce({
 
 
 router.get('bc-index', '/', (ctx) => {
-    console.log(ctx.request.query.id)
+    console.log(ctx.request.query.signed_payload);
+
     ctx.render('bigcommerce/index', { title: 'Index'}, true);
 });
 
 router.get('bc-auth', '/auth', async (ctx) => {
     const data = await bigCommerce.authorize(ctx.request.query);
-    console.log('data', data);
+
+    ctx.cookies.set('access_token', data.access_token);
+
     ctx.render('bigcommerce/auth', { title: 'Authorized!', data: data });
 });
 
 router.get('bc-load', '/load', (ctx) => {
     const data = bigCommerce.verify(ctx.request.query.signed_payload);
+
+    console.log(ctx.cookies.get('access_token'));
+
     ctx.render('bigcommerce/load', { title: 'Load!', data: data });
 });
 
