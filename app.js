@@ -1,6 +1,7 @@
 'use strict';
 
 const Koa = require('koa');
+const bodyParser = require('koa-bodyparser');
 const app = new Koa();
 
 /*const pug = require('./configs/pugConfig');
@@ -18,9 +19,15 @@ const pug = new Pug({
     app: app
 });
 
-const bcRouter = require('./routes/bigcommerce')
-app.use(bcRouter.routes())
-app.use(bcRouter.allowedMethods())
+const bc = require('./routes/bigcommerce')
+app.use(bc.routes())
+app.use(bc.allowedMethods())
+
+app.use(bodyParser())
+
+const wh = require('./routes/webhooks')
+app.use(wh.routes())
+
 
 const normalizePort = (val) => {
     var port = parseInt(val,10);

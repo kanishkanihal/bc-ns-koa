@@ -20,7 +20,6 @@ router.get('bc-index', '/', (ctx) => {
 
 router.get('bc-auth', '/auth', async (ctx) => {
     const data = await bigCommerce.authorize(ctx.request.query);
-    console.log('data', data);
     ctx.render('bigcommerce/auth', { title: 'Authorized!', data: data });
 });
 

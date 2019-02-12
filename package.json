@@ -12,6 +12,7 @@
   "dependencies": {
     "dotenv": "^6.2.0",
     "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
     "koa-pug": "^3.0.0-2",
     "koa-router": "^7.4.0",
     "node-bigcommerce": "^4.0.1"
