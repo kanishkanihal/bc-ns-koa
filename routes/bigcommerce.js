@@ -13,7 +13,7 @@ const bigCommerce = new BigCommerce({
 });
 
 
-router.get('bc-index', '/', (ctx) => {
+router.get('bc-index', '/index', (ctx) => {
     console.log(ctx.request.query.signed_payload);
 
     ctx.render('bigcommerce/index', { title: 'Index'}, true);
@@ -27,7 +27,7 @@ router.get('bc-auth', '/auth', async (ctx) => {
     ctx.render('bigcommerce/auth', { title: 'Authorized!', data: data });
 });
 
-router.get('bc-load', '/load', (ctx) => {
+router.get('bc-load-old', '/load-old', (ctx) => {
     const data = bigCommerce.verify(ctx.request.query.signed_payload);
 
     console.log(ctx.cookies.get('access_token'));

@@ -22,6 +22,10 @@ const bcRouter = require('./routes/bigcommerce')
 app.use(bcRouter.routes())
 app.use(bcRouter.allowedMethods())
 
+var bcStatic = require('koa-static')
+var serve = bcStatic('client/build')
+app.use(serve)
+
 const normalizePort = (val) => {
     var port = parseInt(val,10);
     if (isNaN(port)) {return val;}
